@@ -1,19 +1,37 @@
-#pragma once
-#include <ImageProcess/Commands/ImageCommandFactory.hpp>
-#include <iscore/command/PropertyCommand.hpp>
+#include <ImageProcess/ImageModel.hpp>
 
+#include "SetImage.hpp"
+#include <iscore/serialization/DataStreamVisitor.hpp>
+#include <iscore/tools/ModelPathSerialization.hpp>
 namespace Image
 {
-class ProcessModel;
-class SetMin final : public iscore::PropertyCommand
+SetImage::SetImage(
+    Path<ProcessModel>&& model,
+    const QString& text):
+  m_model{std::move(model)},
+  m_new{text}
 {
-        ISCORE_COMMAND_DECL(CommandFactoryName(), SetMin, "Set curve minimum")
-    public:
+    m_old = m_model.find().imagePath();
+}
 
-        SetMin(Path<ProcessModel>&& path, double newval):
-            iscore::PropertyCommand{std::move(path), "min", newval}
-        {
+void SetImage::undo() const
+{
+    m_model.find().loadImage(m_old);
+}
 
-        }
-};
+void SetImage::redo() const
+{
+    m_model.find().loadImage(m_new);
+
+}
+
+void SetImage::serializeImpl(DataStreamInput& s) const
+{
+    s << m_model << m_old << m_new;
+}
+
+void SetImage::deserializeImpl(DataStreamOutput& s)
+{
+    s >> m_model >> m_old >> m_new;
+}
 }

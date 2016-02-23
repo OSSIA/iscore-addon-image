@@ -8,7 +8,8 @@ namespace iscore{
 class Document;
 struct DocumentContext;
 }
-class QLineEdit;
+class QLabel;
+class QPushButton;
 
 namespace Image
 {
@@ -23,9 +24,8 @@ class InspectorWidget final :
                 QWidget* parent);
 
     private:
-        void on_pathChange(const QString& path);
-
-        QLineEdit* m_lineEdit{};
+        QLabel* m_label{};
+        QPushButton* m_loadButton{};
         CommandDispatcher<> m_dispatcher;
 };
 }

@@ -14,7 +14,7 @@ namespace Image
 {
 class InspectorFactory final : public ProcessInspectorWidgetDelegateFactory
 {
-        ISCORE_CONCRETE_FACTORY_DECL("d312d001-b91f-42f0-8780-7e3a587c6ffc")
+        ISCORE_CONCRETE_FACTORY_DECL("6c6a91ad-8267-4976-a15d-de1cfce434e6")
     public:
         InspectorFactory() = default;
 

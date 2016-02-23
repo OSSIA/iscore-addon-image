@@ -1,15 +1,10 @@
-#include <QBoxLayout>
-#include <QFormLayout>
-
+#include <QVBoxLayout>
+#include <QLabel>
 #include <QPushButton>
-#include <QSpinBox>
-#include <QStringList>
-#include <QWidget>
-#include <algorithm>
-#include <list>
-#include <vector>
+#include <QFileDialog>
 #include <ImageProcess/ImageModel.hpp>
 #include "ImageInspectorWidget.hpp"
+#include <ImageProcess/Commands/SetImage.hpp>
 #include <Inspector/InspectorWidgetBase.hpp>
 #include <iscore/command/Dispatchers/CommandDispatcher.hpp>
 #include <iscore/document/DocumentInterface.hpp>
@@ -33,43 +28,36 @@ InspectorWidget::InspectorWidget(
     auto vlay = new QVBoxLayout;
     vlay->setSpacing(0);
     vlay->setContentsMargins(0,0,0,0);
-/*
-    // LineEdit
-    // If there is a DeviceExplorer in the current document, use it
-    // to make a widget.
-    // TODO instead of doing this, just make an address line edit factory.
-    auto plug = doc.findPlugin<Explorer::DeviceDocumentPlugin>();
-    DeviceExplorerModel* explorer{};
-    if(plug)
-        explorer = plug->updateProxy.deviceExplorer;
-    m_lineEdit = new AddressEditWidget{explorer, this};
 
-    m_lineEdit->setAddress(process().address());
-    con(process(), &ProcessModel::addressChanged,
-            m_lineEdit, &AddressEditWidget::setAddress);
+    m_label = new QLabel{model.imagePath(), this};
 
-    connect(m_lineEdit, &AddressEditWidget::addressChanged,
-            this, &InspectorWidget::on_addressChange);
+    // TODO this calls for a reactive binding
+    con(process(), &ProcessModel::imageChanged,
+        this, [&] () {
+        m_label->setText(process().imagePath());
+    });
+    m_label->setText(process().imagePath());
 
-    vlay->addWidget(m_lineEdit);
-*/
-    // Min / max
+    m_loadButton = new QPushButton{tr("Load an image")};
+    connect(m_loadButton, &QPushButton::pressed,
+            this, [=] () {
+        auto res = QFileDialog::getOpenFileName(
+                    this,
+                    tr("Load an image"),
+                    "",
+                    "Images (*.png *.jpg)");
+
+        if(res == process().imagePath())
+            return;
+
+        if(!QFile::exists(res))
+            return;
+
+        m_dispatcher.submitCommand(new SetImage{process(), res});
+    });
+
+    vlay->addWidget(m_label);
+    vlay->addWidget(m_loadButton);
     this->setLayout(vlay);
-}
-
-void InspectorWidget::on_pathChange(const QString& path)
-{
-    /*
-    // Various checks
-    if(newAddr == process().address())
-        return;
-
-    if(newAddr.path.isEmpty())
-        return;
-
-    auto cmd = new ChangeAddress{process(), newAddr};
-
-    m_dispatcher.submitCommand(cmd);
-    */
 }
 }

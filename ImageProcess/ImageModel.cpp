@@ -25,7 +25,7 @@ ProcessModel::ProcessModel(
     pluginModelList = new iscore::ElementPluginModelList{iscore::IDocument::documentContext(*parent), this};
 
     metadata.setName(QString("Image.%1").arg(*this->id().val()));
-    m_image.image.load("test.png");
+    loadImage("test.png");
 }
 
 ProcessModel::ProcessModel(
@@ -102,14 +102,12 @@ ProcessStateDataInterface* ProcessModel::endStateData() const
     return nullptr;
 }
 
-void ProcessModel::setImage(const QImage& img)
-{
-
-}
-
 void ProcessModel::loadImage(const QString& img)
 {
+    m_image.path = img;
+    m_image.image.load(img);
 
+    emit imageChanged();
 }
 
 void ProcessModel::startExecution()

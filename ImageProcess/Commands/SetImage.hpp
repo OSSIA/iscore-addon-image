@@ -13,7 +13,7 @@ class SetImage final : public iscore::SerializableCommand
 {
         ISCORE_COMMAND_DECL(Image::CommandFactoryName(), SetImage, "Set an image")
     public:
-        EditScript(
+        SetImage(
                 Path<ProcessModel>&& model,
                 const QString& path);
 
