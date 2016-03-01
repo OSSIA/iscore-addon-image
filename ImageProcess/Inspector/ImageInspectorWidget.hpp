@@ -15,7 +15,7 @@ namespace Image
 {
 class ProcessModel;
 class InspectorWidget final :
-        public ProcessInspectorWidgetDelegate_T<Image::ProcessModel>
+        public Process::InspectorWidgetDelegate_T<Image::ProcessModel>
 {
     public:
         explicit InspectorWidget(

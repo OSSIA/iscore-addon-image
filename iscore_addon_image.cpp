@@ -38,7 +38,7 @@ std::vector<std::unique_ptr<iscore::FactoryInterfaceBase>> iscore_addon_image::f
     TL<
         FW<Process::ProcessFactory,
              Image::ProcessFactory>,
-        FW<ProcessInspectorWidgetDelegateFactory,
+        FW<Process::InspectorWidgetDelegateFactory,
              Image::InspectorFactory>
     >>(ctx, key);
 }

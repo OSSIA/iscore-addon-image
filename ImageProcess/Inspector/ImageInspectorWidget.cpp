@@ -19,7 +19,7 @@ InspectorWidget::InspectorWidget(
         const ProcessModel& model,
         const iscore::DocumentContext& doc,
         QWidget* parent) :
-    ProcessInspectorWidgetDelegate_T {model, parent},
+    InspectorWidgetDelegate_T {model, parent},
     m_dispatcher{doc.commandStack}
 {
     setObjectName("ImageInspectorWidget");
