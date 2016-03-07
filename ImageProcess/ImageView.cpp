@@ -21,7 +21,7 @@ void ImageView::setImage(const QImage& image)
 
 void ImageView::paint_impl(QPainter* painter) const
 {
-    painter->drawImage(0, 0, m_image);
+    painter->drawImage(boundingRect(), m_image, m_image.rect());
 }
 
 }
