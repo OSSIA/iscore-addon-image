@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(iscore_plugin_image LANGUAGES CXX)
+project(iscore_addon_image LANGUAGES CXX)
 
 ###  General initialization of always necessary stuff (AUTOMOC, etc) ###
 iscore_common_setup()
