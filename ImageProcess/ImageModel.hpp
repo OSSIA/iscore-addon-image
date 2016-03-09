@@ -15,7 +15,7 @@ namespace Process { class LayerModel; }
 namespace Process { class ProcessModel; }
 class QObject;
 #include <iscore/tools/SettableIdentifier.hpp>
-#include <iscore_plugin_image_export.h>
+#include <iscore_addon_image_export.h>
 
 
 namespace Image
@@ -26,7 +26,7 @@ struct ImageFile
         QImage image;
 };
 
-class ISCORE_PLUGIN_IMAGE_EXPORT ProcessModel final : public Process::ProcessModel
+class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessModel
 {
         ISCORE_SERIALIZE_FRIENDS(ProcessModel, DataStream)
         ISCORE_SERIALIZE_FRIENDS(ProcessModel, JSONObject)

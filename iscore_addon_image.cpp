@@ -15,7 +15,7 @@
 #include <ImageProcess/Inspector/ImageInspectorFactory.hpp>
 #endif
 
-#include <iscore_plugin_image_commands_files.hpp>
+#include <iscore_addon_image_commands_files.hpp>
 #include <ImageProcess/ImageFactory.hpp>
 
 iscore_addon_image::iscore_addon_image() :
@@ -49,7 +49,7 @@ std::pair<const CommandParentFactoryKey, CommandGeneratorMap> iscore_addon_image
     std::pair<const CommandParentFactoryKey, CommandGeneratorMap> cmds{CommandFactoryName(), CommandGeneratorMap{}};
 
     using Types = TypeList<
-#include <iscore_plugin_image_commands.hpp>
+#include <iscore_addon_image_commands.hpp>
       >;
     for_each_type<Types>(iscore::commands::FactoryInserter{cmds.second});
 
