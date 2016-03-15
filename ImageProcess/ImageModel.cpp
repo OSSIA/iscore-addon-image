@@ -33,7 +33,7 @@ ProcessModel::ProcessModel(
         const Id<Process::ProcessModel>& id,
         QObject* parent):
     Process::ProcessModel {source, id, Metadata<ObjectKey_k, ProcessModel>::get(), parent},
-    m_image{source.m_image}
+    m_image(source.m_image)
 {
     pluginModelList = new iscore::ElementPluginModelList(*source.pluginModelList, this);
 
