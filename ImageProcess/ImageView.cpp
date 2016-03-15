@@ -21,7 +21,14 @@ void ImageView::setImage(const QImage& image)
 
 void ImageView::paint_impl(QPainter* painter) const
 {
-    painter->drawImage(boundingRect(), m_image, m_image.rect());
+    if(!m_image.isNull())
+    {
+        auto rect = boundingRect();
+        auto scaled = m_image.scaled(
+                          rect.size().toSize(),
+                          Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        painter->drawImage(scaled.rect(), scaled, scaled.rect());
+    }
 }
 
 }
