@@ -51,12 +51,12 @@ void ImagePresenter::setHeight(qreal val)
 
 void ImagePresenter::putToFront()
 {
-    m_view->show();
+    m_view->setOpacity(1.);
 }
 
 void ImagePresenter::putBehind()
 {
-    m_view->hide();
+    m_view->setOpacity(0.8);
 }
 
 void ImagePresenter::on_zoomRatioChanged(ZoomRatio)
