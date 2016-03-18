@@ -3,6 +3,9 @@
 #include <iscore/command/SerializableCommand.hpp>
 #include <iscore/tools/ModelPath.hpp>
 
+#include <ImageProcess/ScaleMode.hpp>
+
+
 class DataStreamInput;
 class DataStreamOutput;
 namespace Image
@@ -27,5 +30,28 @@ class SetImage final : public iscore::SerializableCommand
     private:
         Path<ProcessModel> m_model;
         QString m_old, m_new;
+};
+
+
+// MOVEME
+
+class SetImageScaleMode final : public iscore::SerializableCommand
+{
+        ISCORE_COMMAND_DECL(Image::CommandFactoryName(), SetImageScaleMode, "Set image scale")
+    public:
+        SetImageScaleMode(
+                Path<ProcessModel>&& model,
+                ScaleMode sm);
+
+        void undo() const override;
+        void redo() const override;
+
+    protected:
+        void serializeImpl(DataStreamInput & s) const override;
+        void deserializeImpl(DataStreamOutput & s) override;
+
+    private:
+        Path<ProcessModel> m_model;
+        ScaleMode m_old, m_new;
 };
 }

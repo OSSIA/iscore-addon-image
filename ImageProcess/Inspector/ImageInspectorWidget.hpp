@@ -9,6 +9,7 @@ class Document;
 struct DocumentContext;
 }
 class QLabel;
+class QComboBox;
 class QPushButton;
 
 namespace Image
@@ -27,5 +28,6 @@ class InspectorWidget final :
         QLabel* m_label{};
         QPushButton* m_loadButton{};
         CommandDispatcher<> m_dispatcher;
+        QComboBox* m_scale{};
 };
 }

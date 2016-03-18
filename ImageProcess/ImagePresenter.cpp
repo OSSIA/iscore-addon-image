@@ -33,10 +33,12 @@ ImagePresenter::ImagePresenter(
 
     con(layer.model(), &ProcessModel::imageChanged,
         this, [&] ( ) {
+        m_view->setMode(m_layer.model().scaleMode());
         m_view->setImage(m_layer.model().image());
     });
 
     m_view->setImage(layer.model().image());
+    m_view->setMode(layer.model().scaleMode());
 }
 
 void ImagePresenter::setWidth(qreal val)

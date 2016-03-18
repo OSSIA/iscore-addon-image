@@ -24,10 +24,38 @@ void ImageView::paint_impl(QPainter* painter) const
     if(!m_image.isNull())
     {
         auto rect = boundingRect();
-        auto scaled = m_image.scaled(
-                          rect.size().toSize(),
-                          Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        painter->drawImage(scaled.rect(), scaled, scaled.rect());
+        switch(m_mode)
+        {
+            case ScaleMode::NoScale:
+            {
+                painter->drawImage(m_image.rect(), m_image, m_image.rect());
+                break;
+            }
+            case ScaleMode::ScaleDisregard:
+            {
+                auto scaled = m_image.scaled(
+                                  rect.size().toSize(),
+                                  Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+                painter->drawImage(boundingRect(), scaled, scaled.rect());
+                break;
+            }
+            case ScaleMode::ScaleBigger:
+            {
+                auto scaled = m_image.scaled(
+                                  rect.size().toSize(),
+                                  Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+                painter->drawImage(scaled.rect(), scaled, scaled.rect());
+                break;
+            }
+            case ScaleMode::ScaleSmaller:
+            {
+                auto scaled = m_image.scaled(
+                                  rect.size().toSize(),
+                                  Qt::KeepAspectRatio, Qt::SmoothTransformation);
+                painter->drawImage(scaled.rect(), scaled, scaled.rect());
+                break;
+            }
+        }
     }
 }
 

@@ -2,6 +2,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QFileDialog>
+#include <QComboBox>
 #include <ImageProcess/ImageModel.hpp>
 #include "ImageInspectorWidget.hpp"
 #include <ImageProcess/Commands/SetImage.hpp>
@@ -56,8 +57,20 @@ InspectorWidget::InspectorWidget(
         m_dispatcher.submitCommand(new SetImage{process(), res});
     });
 
+    m_scale = new QComboBox;
+    m_scale->addItems(QStringList{
+                          tr("No scale"),
+                          tr("Scale"),
+                          tr("Keep aspect (small)"),
+                          tr("Keep aspect (large)")});
+    connect(m_scale, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, [=] (int idx) {
+        m_dispatcher.submitCommand(new SetImageScaleMode{process(), static_cast<ScaleMode>(idx)});
+    });
+
     vlay->addWidget(m_label);
     vlay->addWidget(m_loadButton);
+    vlay->addWidget(m_scale);
     this->setLayout(vlay);
 }
 }

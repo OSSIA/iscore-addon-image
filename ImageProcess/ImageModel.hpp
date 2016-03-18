@@ -5,7 +5,7 @@
 #include <QString>
 #include <QImage>
 
-
+#include <ImageProcess/ScaleMode.hpp>
 #include <Process/TimeValue.hpp>
 #include <iscore/serialization/VisitorInterface.hpp>
 
@@ -83,6 +83,14 @@ class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessMode
         void setImage(const QImage& img);
         void loadImage(const QString& img);
 
+        ScaleMode scaleMode() const
+        { return m_mode; }
+        void setScaleMode(ScaleMode m)
+        {
+            m_mode = m;
+            emit imageChanged();
+        }
+
     signals:
         void imageChanged();
 
@@ -105,6 +113,8 @@ class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessMode
         void setSelection(const Selection& s) const override;
 
         ImageFile m_image;
+        ScaleMode m_mode{};
+
 };
 }
 
