@@ -12,6 +12,7 @@
 #include <iscore/tools/ModelPath.hpp>
 #include <iscore/tools/Todo.hpp>
 #include <iscore/document/DocumentContext.hpp>
+#include <iscore/widgets/SignalUtils.hpp>
 
 
 namespace Image
@@ -63,7 +64,7 @@ InspectorWidget::InspectorWidget(
                           tr("Scale"),
                           tr("Keep aspect (small)"),
                           tr("Keep aspect (large)")});
-    connect(m_scale, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    connect(m_scale, SignalUtils::QComboBox_currentIndexChanged_int,
             this, [=] (int idx) {
         m_dispatcher.submitCommand(new SetImageScaleMode{process(), static_cast<ScaleMode>(idx)});
     });
