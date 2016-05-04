@@ -64,7 +64,7 @@ InspectorWidget::InspectorWidget(
                           tr("Scale"),
                           tr("Keep aspect (small)"),
                           tr("Keep aspect (large)")});
-    connect(m_scale, SignalUtils::QComboBox_currentIndexChanged_int,
+    connect(m_scale, SignalUtils::QComboBox_currentIndexChanged_int(),
             this, [=] (int idx) {
         m_dispatcher.submitCommand(new SetImageScaleMode{process(), static_cast<ScaleMode>(idx)});
     });
