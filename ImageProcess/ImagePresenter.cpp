@@ -17,11 +17,11 @@ namespace Image
 ImagePresenter::ImagePresenter(
         const LayerModel& layer,
         ImageView* view,
+        const Process::ProcessPresenterContext& ctx,
         QObject* parent):
-    LayerPresenter{"ImagePresenter", parent},
+    LayerPresenter{ctx, parent},
     m_layer{layer},
-    m_view{view},
-    m_focusDispatcher{iscore::IDocument::documentContext(layer).document}
+    m_view{view}
 {
     putToFront();
 

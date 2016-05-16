@@ -22,6 +22,7 @@ class ImagePresenter final :
         explicit ImagePresenter(
                 const LayerModel& model,
                 ImageView* view,
+                const Process::ProcessPresenterContext& ctx,
                 QObject* parent);
 
         void setWidth(qreal width) override;
