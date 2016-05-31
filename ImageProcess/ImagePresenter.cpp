@@ -79,10 +79,4 @@ const Id<Process::ProcessModel>& ImagePresenter::modelId() const
     return m_layer.processModel().id();
 }
 
-void ImagePresenter::fillContextMenu(
-        QMenu*,
-        const QPoint&,
-        const QPointF&) const
-{
-}
 }

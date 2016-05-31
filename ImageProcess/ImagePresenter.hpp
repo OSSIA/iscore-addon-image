@@ -38,11 +38,6 @@ class ImagePresenter final :
         const Process::LayerModel& layerModel() const override;
         const Id<Process::ProcessModel>& modelId() const override;
 
-        void fillContextMenu(
-                QMenu*,
-                const QPoint& pos,
-                const QPointF& scenepos) const override;
-
     private:
         const LayerModel& m_layer;
         ImageView* m_view{};
