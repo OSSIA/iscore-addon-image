@@ -51,14 +51,3 @@ void Visitor<Writer<JSONObject>>::writeTo(Image::ProcessModel& image)
 
     image.loadImage(m_obj["Path"].toString());
 }
-
-
-// Dynamic stuff
-namespace Image
-{
-void ProcessModel::serialize_impl(const VisitorVariant& vis) const
-{
-    serialize_dyn(vis, *this);
-}
-
-}

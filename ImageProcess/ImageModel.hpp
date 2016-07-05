@@ -1,20 +1,11 @@
 #pragma once
+#include <ImageProcess/ScaleMode.hpp>
+#include <ImageProcess/ImageProcessMetadata.hpp>
 #include <Process/Process.hpp>
 #include <State/Address.hpp>
 #include <QByteArray>
-#include <QString>
 #include <QImage>
 
-#include <ImageProcess/ScaleMode.hpp>
-#include <Process/TimeValue.hpp>
-#include <iscore/serialization/VisitorInterface.hpp>
-
-class DataStream;
-class JSONObject;
-namespace Process { class LayerModel; }
-namespace Process { class ProcessModel; }
-class QObject;
-#include <iscore/tools/SettableIdentifier.hpp>
 #include <iscore_addon_image_export.h>
 
 
@@ -30,6 +21,7 @@ class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessMode
 {
         ISCORE_SERIALIZE_FRIENDS(ProcessModel, DataStream)
         ISCORE_SERIALIZE_FRIENDS(ProcessModel, JSONObject)
+        PROCESS_METADATA_IMPL(Image::ProcessModel)
 
         Q_OBJECT
 
@@ -37,8 +29,6 @@ class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessMode
         ProcessModel(const TimeValue& duration,
                      const Id<Process::ProcessModel>& id,
                      QObject* parent);
-        Process::ProcessModel* clone(const Id<Process::ProcessModel>& newId,
-                            QObject* newParent) const override;
 
         template<typename Impl>
         ProcessModel(Deserializer<Impl>& vis, QObject* parent) :
@@ -46,13 +36,6 @@ class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessMode
         {
             vis.writeTo(*this);
         }
-
-        //// ProcessModel ////
-        UuidKey<Process::ProcessFactory> concreteFactoryKey() const override;
-
-        QString prettyName() const override;
-
-        void serialize_impl(const VisitorVariant& vis) const override;
 
         //// ImageModel specifics ////
         const QString& imagePath() const
