@@ -63,6 +63,6 @@ iscore::Version iscore_addon_image::version() const
 
 UuidKey<iscore::Plugin> iscore_addon_image::key() const
 {
-    return "10edb840-28fa-4bba-8027-3eca2896180e";
+    return_uuid("10edb840-28fa-4bba-8027-3eca2896180e");
 }
 
