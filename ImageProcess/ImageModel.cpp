@@ -6,7 +6,6 @@
 #include "ImageLayerModel.hpp"
 #include "ImageModel.hpp"
 #include <Process/ModelMetadata.hpp>
-#include <iscore/plugins/documentdelegate/plugin/ElementPluginModelList.hpp>
 #include <iscore/tools/IdentifiedObjectMap.hpp>
 #include <iscore/tools/SettableIdentifier.hpp>
 
@@ -21,8 +20,6 @@ ProcessModel::ProcessModel(
         QObject* parent) :
     Process::ProcessModel {duration, id, Metadata<ObjectKey_k, ProcessModel>::get(), parent}
 {
-    pluginModelList = new iscore::ElementPluginModelList{iscore::IDocument::documentContext(*parent), this};
-
     metadata.setName(QString("Image.%1").arg(*this->id().val()));
     loadImage("test.png");
 }
@@ -34,8 +31,6 @@ ProcessModel::ProcessModel(
     Process::ProcessModel {source, id, Metadata<ObjectKey_k, ProcessModel>::get(), parent},
     m_image(source.m_image)
 {
-    pluginModelList = new iscore::ElementPluginModelList(*source.pluginModelList, this);
-
     metadata.setName(QString("Image.%1").arg(*this->id().val()));
 }
 
