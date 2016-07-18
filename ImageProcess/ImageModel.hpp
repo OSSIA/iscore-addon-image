@@ -21,7 +21,7 @@ class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessMode
 {
         ISCORE_SERIALIZE_FRIENDS(ProcessModel, DataStream)
         ISCORE_SERIALIZE_FRIENDS(ProcessModel, JSONObject)
-        PROCESS_METADATA_IMPL(Image::ProcessModel)
+        MODEL_METADATA_IMPL(Image::ProcessModel)
 
         Q_OBJECT
 
