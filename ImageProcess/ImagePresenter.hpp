@@ -41,6 +41,5 @@ class ImagePresenter final :
     private:
         const LayerModel& m_layer;
         ImageView* m_view{};
-        FocusDispatcher m_focusDispatcher;
 };
 }
