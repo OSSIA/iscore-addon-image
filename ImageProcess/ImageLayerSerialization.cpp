@@ -5,27 +5,27 @@ template <typename T> class Writer;
 
 namespace Image
 {
-class LayerModel;
+class Layer;
 }
 /////// ViewModel
 template<>
-void Visitor<Reader<DataStream>>::readFrom(const Image::LayerModel& lm)
+void Visitor<Reader<DataStream>>::readFrom(const Image::Layer& lm)
 {
 }
 
 template<>
-void Visitor<Writer<DataStream>>::writeTo(Image::LayerModel& lm)
+void Visitor<Writer<DataStream>>::writeTo(Image::Layer& lm)
 {
 }
 
 
 
 template<>
-void Visitor<Reader<JSONObject>>::readFrom(const Image::LayerModel& lm)
+void Visitor<Reader<JSONObject>>::readFrom(const Image::Layer& lm)
 {
 }
 
 template<>
-void Visitor<Writer<JSONObject>>::writeTo(Image::LayerModel& lm)
+void Visitor<Writer<JSONObject>>::writeTo(Image::Layer& lm)
 {
 }

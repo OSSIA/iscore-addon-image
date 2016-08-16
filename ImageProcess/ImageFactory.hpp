@@ -9,7 +9,7 @@ namespace Image
 {
 using ProcessFactory = Process::GenericProcessFactory<
     Image::ProcessModel,
-    Image::LayerModel,
+    Image::Layer,
     Image::ImagePresenter,
     Image::ImageView>;
 }

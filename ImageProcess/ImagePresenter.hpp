@@ -13,14 +13,14 @@ class QObject;
 
 namespace Image
 {
-class LayerModel;
+class Layer;
 class ImageView;
 class ImagePresenter final :
         public Process::LayerPresenter
 {
     public:
         explicit ImagePresenter(
-                const LayerModel& model,
+                const Layer& model,
                 ImageView* view,
                 const Process::ProcessPresenterContext& ctx,
                 QObject* parent);
@@ -39,7 +39,7 @@ class ImagePresenter final :
         const Id<Process::ProcessModel>& modelId() const override;
 
     private:
-        const LayerModel& m_layer;
+        const Layer& m_layer;
         ImageView* m_view{};
 };
 }

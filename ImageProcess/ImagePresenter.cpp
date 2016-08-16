@@ -15,7 +15,7 @@ class QObject;
 namespace Image
 {
 ImagePresenter::ImagePresenter(
-        const LayerModel& layer,
+        const Layer& layer,
         ImageView* view,
         const Process::ProcessPresenterContext& ctx,
         QObject* parent):
