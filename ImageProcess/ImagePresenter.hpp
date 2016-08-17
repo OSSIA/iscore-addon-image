@@ -5,15 +5,10 @@
 #include <Process/ZoomHelper.hpp>
 #include <iscore/tools/SettableIdentifier.hpp>
 #include <Process/Focus/FocusDispatcher.hpp>
-
-namespace Process { class LayerModel; }
-namespace Process { class ProcessModel; }
-class QMenu;
-class QObject;
+#include <ImageProcess/ImageLayerModel.hpp>
 
 namespace Image
 {
-class Layer;
 class ImageView;
 class ImagePresenter final :
         public Process::LayerPresenter

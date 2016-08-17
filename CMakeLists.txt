@@ -10,12 +10,10 @@ file(GLOB_RECURSE HDRS
 )
 set(SRCS
 "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/ImageSerialization.cpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/ImageLayerSerialization.cpp"
 
 "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/ImageModel.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/ImagePresenter.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/ImageView.cpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/ImageLayerModel.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/ImagePanelProxy.cpp"
 
 "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/Commands/SetImage.cpp"

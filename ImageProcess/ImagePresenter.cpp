@@ -31,14 +31,14 @@ ImagePresenter::ImagePresenter(
         putToFront();
     });
 
-    con(layer.model(), &ProcessModel::imageChanged,
+    con(layer.processModel(), &ProcessModel::imageChanged,
         this, [&] ( ) {
-        m_view->setMode(m_layer.model().scaleMode());
-        m_view->setImage(m_layer.model().image());
+        m_view->setMode(m_layer.processModel().scaleMode());
+        m_view->setImage(m_layer.processModel().image());
     });
 
-    m_view->setImage(layer.model().image());
-    m_view->setMode(layer.model().scaleMode());
+    m_view->setImage(layer.processModel().image());
+    m_view->setMode(layer.processModel().scaleMode());
 }
 
 void ImagePresenter::setWidth(qreal val)
