@@ -19,33 +19,17 @@ set(SRCS
 "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/Commands/SetImage.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/Commands/ImageCommandFactory.cpp"
 
+"${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/Inspector/ImageInspectorWidget.cpp"
+
 "${CMAKE_CURRENT_SOURCE_DIR}/iscore_addon_image.cpp"
 )
-
-if(TARGET iscore_lib_inspector)
-    set(INSPECTOR_SRCS
-"${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/Inspector/ImageInspectorFactory.cpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/Inspector/ImageInspectorWidget.cpp"
-    )
-
-    set(SRCS ${SRCS} ${INSPECTOR_SRCS})
-
-    file(GLOB_RECURSE INSPECTOR_HDRS
-        "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/Inspector/*.hpp")
-
-    set(HDRS ${HDRS} ${INSPECTOR_HDRS})
-endif()
 
 add_library(${PROJECT_NAME} ${SRCS} ${HDRS} ${QRCS})
 
 ### If there are commands this will generate the files showcased in iscore_plugin_image.cpp ###
 iscore_generate_command_list_file(${PROJECT_NAME} "${HDRS}")
 
-target_link_libraries(${PROJECT_NAME} PUBLIC iscore_lib_process)
-
-if(TARGET iscore_lib_inspector)
-    target_link_libraries(${PROJECT_NAME} PUBLIC iscore_lib_inspector)
-endif()
+target_link_libraries(${PROJECT_NAME} PUBLIC iscore_lib_process iscore_lib_inspector)
 
 ### Setup of the target ###
 setup_iscore_plugin(${PROJECT_NAME})
