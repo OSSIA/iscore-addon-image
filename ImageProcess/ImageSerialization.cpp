@@ -32,11 +32,11 @@ void Visitor<Writer<DataStream>>::writeTo(Image::ProcessModel& image)
 template<>
 void Visitor<Reader<JSONObject>>::readFrom_impl(const Image::ProcessModel& image)
 {
-    m_obj[iscore::StringConstant().Path] = image.imagePath();
+    m_obj[strings.Path] = image.imagePath();
 }
 
 template<>
 void Visitor<Writer<JSONObject>>::writeTo(Image::ProcessModel& image)
 {
-    image.loadImage(m_obj[iscore::StringConstant().Path].toString());
+    image.loadImage(m_obj[strings.Path].toString());
 }

@@ -25,7 +25,7 @@ ImagePresenter::ImagePresenter(
 {
     putToFront();
 
-    con(layer.processModel().metadata, &ModelMetadata::nameChanged,
+    con(layer.processModel().metadata, &ModelMetadata::NameChanged,
             this, [&] (QString s)
     {
         putToFront();
