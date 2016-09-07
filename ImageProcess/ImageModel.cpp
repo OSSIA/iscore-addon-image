@@ -5,7 +5,7 @@
 
 #include "ImageLayerModel.hpp"
 #include "ImageModel.hpp"
-#include <Process/ModelMetadata.hpp>
+#include <iscore/model/ModelMetadata.hpp>
 #include <iscore/tools/IdentifiedObjectMap.hpp>
 #include <iscore/tools/SettableIdentifier.hpp>
 
@@ -20,7 +20,7 @@ ProcessModel::ProcessModel(
         QObject* parent) :
     Process::ProcessModel {duration, id, Metadata<ObjectKey_k, ProcessModel>::get(), parent}
 {
-    metadata.setName(QString("Image.%1").arg(*this->id().val()));
+    metadata().setName(QString("Image.%1").arg(*this->id().val()));
     loadImage("test.png");
 }
 
@@ -31,7 +31,7 @@ ProcessModel::ProcessModel(
     Process::ProcessModel {source, id, Metadata<ObjectKey_k, ProcessModel>::get(), parent},
     m_image(source.m_image)
 {
-    metadata.setName(QString("Image.%1").arg(*this->id().val()));
+    metadata().setName(QString("Image.%1").arg(*this->id().val()));
 }
 
 void ProcessModel::loadImage(const QString& img)

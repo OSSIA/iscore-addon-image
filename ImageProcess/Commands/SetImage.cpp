@@ -60,11 +60,11 @@ void SetImageScaleMode::redo() const
 
 void SetImageScaleMode::serializeImpl(DataStreamInput& s) const
 {
-    s << m_model << (int)m_old << (int)m_new;
+    s << m_model << (int32_t)m_old << (int32_t)m_new;
 }
 
 void SetImageScaleMode::deserializeImpl(DataStreamOutput& s)
 {
-    s >> m_model >> (int&)m_old >> (int&)m_new;
+    s >> m_model >> (int32_t&)m_old >> (int32_t&)m_new;
 }
 }
