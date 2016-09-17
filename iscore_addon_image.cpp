@@ -36,8 +36,10 @@ std::vector<std::unique_ptr<iscore::FactoryInterfaceBase>> iscore_addon_image::f
     return instantiate_factories<
             iscore::ApplicationContext,
     TL<
-        FW<Process::ProcessFactory,
-             Image::ProcessFactory>,
+        FW<Process::ProcessModelFactory,
+           Image::ProcessFactory>,
+        FW<Process::LayerFactory,
+          Image::LayerFactory>,
         FW<Process::InspectorWidgetDelegateFactory,
              Image::InspectorFactory>
     >>(ctx, key);

@@ -7,4 +7,10 @@ namespace Image
 using Layer = Process::LayerModel_T<ProcessModel>;
 }
 
-DEFAULT_MODEL_METADATA(Image::Layer, "Image Layer")
+LAYER_METADATA(
+        ,
+        Image::Layer,
+        "38385c69-c3eb-4529-bfe2-29671ab1e11e",
+        "ImageLayer",
+        "ImageLayer"
+        )
