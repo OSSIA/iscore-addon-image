@@ -20,7 +20,7 @@ ProcessModel::ProcessModel(
         QObject* parent) :
     Process::ProcessModel {duration, id, Metadata<ObjectKey_k, ProcessModel>::get(), parent}
 {
-    metadata().setName(QString("Image.%1").arg(this->id().val()));
+    metadata().setInstanceName(*this);
     loadImage("test.png");
 }
 
@@ -31,7 +31,7 @@ ProcessModel::ProcessModel(
     Process::ProcessModel {source, id, Metadata<ObjectKey_k, ProcessModel>::get(), parent},
     m_image(source.m_image)
 {
-    metadata().setName(QString("Image.%1").arg(this->id().val()));
+    metadata().setInstanceName(*this);
 }
 
 void ProcessModel::loadImage(const QString& img)
