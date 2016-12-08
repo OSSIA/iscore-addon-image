@@ -8,6 +8,6 @@ namespace Image
 class InspectorFactory final :
         public Process::InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
 {
-        ISCORE_CONCRETE_FACTORY("6c6a91ad-8267-4976-a15d-de1cfce434e6")
+        ISCORE_CONCRETE("6c6a91ad-8267-4976-a15d-de1cfce434e6")
 };
 }
