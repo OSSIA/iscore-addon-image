@@ -3,5 +3,5 @@
 
 namespace Image
 {
-const CommandParentFactoryKey& CommandFactoryName();
+const CommandGroupKey& CommandFactoryName();
 }

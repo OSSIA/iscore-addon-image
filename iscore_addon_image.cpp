@@ -45,10 +45,10 @@ std::vector<std::unique_ptr<iscore::InterfaceBase>> iscore_addon_image::factorie
     >>(ctx, key);
 }
 
-std::pair<const CommandParentFactoryKey, CommandGeneratorMap> iscore_addon_image::make_commands()
+std::pair<const CommandGroupKey, CommandGeneratorMap> iscore_addon_image::make_commands()
 {
     using namespace Image;
-    std::pair<const CommandParentFactoryKey, CommandGeneratorMap> cmds{CommandFactoryName(), CommandGeneratorMap{}};
+    std::pair<const CommandGroupKey, CommandGeneratorMap> cmds{CommandFactoryName(), CommandGeneratorMap{}};
 
     using Types = TypeList<
 #include <iscore_addon_image_commands.hpp>

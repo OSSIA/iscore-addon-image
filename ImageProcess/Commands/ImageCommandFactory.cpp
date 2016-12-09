@@ -3,8 +3,8 @@
 
 namespace Image
 {
-const CommandParentFactoryKey& CommandFactoryName() {
-    static const CommandParentFactoryKey key{"Image"};
+const CommandGroupKey& CommandFactoryName() {
+    static const CommandGroupKey key{"Image"};
     return key;
 }
 }
