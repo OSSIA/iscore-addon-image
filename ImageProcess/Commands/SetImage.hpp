@@ -1,6 +1,6 @@
 #pragma once
 #include <ImageProcess/Commands/ImageCommandFactory.hpp>
-#include <iscore/command/SerializableCommand.hpp>
+#include <iscore/command/Command.hpp>
 #include <iscore/tools/ModelPath.hpp>
 
 #include <ImageProcess/ScaleMode.hpp>
@@ -12,7 +12,7 @@ namespace Image
 {
 class ProcessModel;
 
-class SetImage final : public iscore::SerializableCommand
+class SetImage final : public iscore::Command
 {
         ISCORE_COMMAND_DECL(Image::CommandFactoryName(), SetImage, "Set an image")
     public:
@@ -35,7 +35,7 @@ class SetImage final : public iscore::SerializableCommand
 
 // MOVEME
 
-class SetImageScaleMode final : public iscore::SerializableCommand
+class SetImageScaleMode final : public iscore::Command
 {
         ISCORE_COMMAND_DECL(Image::CommandFactoryName(), SetImageScaleMode, "Set image scale")
     public:
