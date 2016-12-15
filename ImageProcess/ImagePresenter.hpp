@@ -3,7 +3,7 @@
 #include <QPoint>
 
 #include <Process/ZoomHelper.hpp>
-#include <iscore/tools/SettableIdentifier.hpp>
+#include <iscore/model/Identifier.hpp>
 #include <Process/Focus/FocusDispatcher.hpp>
 #include <ImageProcess/ImageLayerModel.hpp>
 

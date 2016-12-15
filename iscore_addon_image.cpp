@@ -35,14 +35,13 @@ std::vector<std::unique_ptr<iscore::InterfaceBase>> iscore_addon_image::factorie
 {
     return instantiate_factories<
             iscore::ApplicationContext,
-    TL<
         FW<Process::ProcessModelFactory,
            Image::ProcessFactory>,
         FW<Process::LayerFactory,
           Image::LayerFactory>,
         FW<Process::InspectorWidgetDelegateFactory,
              Image::InspectorFactory>
-    >>(ctx, key);
+    >(ctx, key);
 }
 
 std::pair<const CommandGroupKey, CommandGeneratorMap> iscore_addon_image::make_commands()

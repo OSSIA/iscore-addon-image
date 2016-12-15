@@ -1,7 +1,7 @@
 #pragma once
 #include <ImageProcess/Commands/ImageCommandFactory.hpp>
 #include <iscore/command/Command.hpp>
-#include <iscore/tools/ModelPath.hpp>
+#include <iscore/model/path/Path.hpp>
 
 #include <ImageProcess/ScaleMode.hpp>
 

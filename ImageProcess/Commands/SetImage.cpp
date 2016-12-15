@@ -2,7 +2,7 @@
 
 #include "SetImage.hpp"
 #include <iscore/serialization/DataStreamVisitor.hpp>
-#include <iscore/tools/ModelPathSerialization.hpp>
+#include <iscore/model/path/PathSerialization.hpp>
 namespace Image
 {
 SetImage::SetImage(
