@@ -56,14 +56,3 @@ std::pair<const CommandGroupKey, CommandGeneratorMap> iscore_addon_image::make_c
 
     return cmds;
 }
-
-iscore::Version iscore_addon_image::version() const
-{
-    return iscore::Version{1};
-}
-
-UuidKey<iscore::Plugin> iscore_addon_image::key() const
-{
-    return_uuid("10edb840-28fa-4bba-8027-3eca2896180e");
-}
-

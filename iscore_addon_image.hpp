@@ -20,11 +20,14 @@ class iscore_addon_image final :
 {
         Q_OBJECT
         Q_PLUGIN_METADATA(IID FactoryInterface_QtInterface_iid)
+
         Q_INTERFACES(
                 iscore::Plugin_QtInterface
                 iscore::FactoryInterface_QtInterface
                 iscore::CommandFactory_QtInterface
                 )
+
+        ISCORE_PLUGIN_METADATA(1, "10edb840-28fa-4bba-8027-3eca2896180e")
 
     public:
         iscore_addon_image();
@@ -38,7 +41,4 @@ class iscore_addon_image final :
 
         // CommandFactory_QtInterface interface
         std::pair<const CommandGroupKey, CommandGeneratorMap> make_commands() override;
-
-        iscore::Version version() const override;
-        UuidKey<iscore::Plugin> key() const override;
 };
