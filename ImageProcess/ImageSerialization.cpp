@@ -10,16 +10,16 @@
 #include <iscore/serialization/JSONValueVisitor.hpp>
 #include <iscore/serialization/VisitorCommon.hpp>
 
-template<>
-void Visitor<Reader<DataStream>>::readFrom_impl(const Image::ProcessModel& image)
+template <>
+void DataStreamReader::read(const Image::ProcessModel& image)
 {
     m_stream << image.imagePath();
 
     insertDelimiter();
 }
 
-template<>
-void Visitor<Writer<DataStream>>::writeTo(Image::ProcessModel& image)
+template <>
+void DataStreamWriter::writeTo(Image::ProcessModel& image)
 {
     QString path;
     m_stream >> path;
@@ -29,14 +29,14 @@ void Visitor<Writer<DataStream>>::writeTo(Image::ProcessModel& image)
     checkDelimiter();
 }
 
-template<>
-void Visitor<Reader<JSONObject>>::readFrom_impl(const Image::ProcessModel& image)
+template <>
+void JSONObjectReader::read(const Image::ProcessModel& image)
 {
-    m_obj[strings.Path] = image.imagePath();
+    obj[strings.Path] = image.imagePath();
 }
 
-template<>
-void Visitor<Writer<JSONObject>>::writeTo(Image::ProcessModel& image)
+template <>
+void JSONObjectWriter::writeTo(Image::ProcessModel& image)
 {
-    image.loadImage(m_obj[strings.Path].toString());
+    image.loadImage(obj[strings.Path].toString());
 }

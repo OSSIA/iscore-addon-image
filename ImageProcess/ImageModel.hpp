@@ -19,8 +19,7 @@ struct ImageFile
 
 class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessModel
 {
-        ISCORE_SERIALIZE_FRIENDS(ProcessModel, DataStream)
-        ISCORE_SERIALIZE_FRIENDS(ProcessModel, JSONObject)
+        ISCORE_SERIALIZE_FRIENDS
         MODEL_METADATA_IMPL(Image::ProcessModel)
 
         Q_OBJECT
@@ -31,7 +30,7 @@ class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessMode
                      QObject* parent);
 
         template<typename Impl>
-        ProcessModel(Deserializer<Impl>& vis, QObject* parent) :
+        ProcessModel(Impl& vis, QObject* parent) :
             Process::ProcessModel{vis, parent}
         {
             vis.writeTo(*this);
