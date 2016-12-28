@@ -19,7 +19,7 @@ void DataStreamReader::read(const Image::ProcessModel& image)
 }
 
 template <>
-void DataStreamWriter::writeTo(Image::ProcessModel& image)
+void DataStreamWriter::write(Image::ProcessModel& image)
 {
     QString path;
     m_stream >> path;
@@ -36,7 +36,7 @@ void JSONObjectReader::read(const Image::ProcessModel& image)
 }
 
 template <>
-void JSONObjectWriter::writeTo(Image::ProcessModel& image)
+void JSONObjectWriter::write(Image::ProcessModel& image)
 {
     image.loadImage(obj[strings.Path].toString());
 }
