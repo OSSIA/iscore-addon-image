@@ -25,7 +25,7 @@ class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessMode
         Q_OBJECT
 
     public:
-        ProcessModel(const TimeValue& duration,
+        ProcessModel(const TimeVal& duration,
                      const Id<Process::ProcessModel>& id,
                      QObject* parent);
 
