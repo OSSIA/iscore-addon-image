@@ -1,10 +1,9 @@
-#include <Process/LayerModel.hpp>
+
 #include <Process/Process.hpp>
 
 #include "ImagePresenter.hpp"
 #include "ImageView.hpp"
 #include <ImageProcess/ImageModel.hpp>
-#include <ImageProcess/ImageLayerModel.hpp>
 #include <Process/LayerPresenter.hpp>
 #include <iscore/document/DocumentInterface.hpp>
 #include <iscore/document/DocumentContext.hpp>
@@ -15,7 +14,7 @@ class QObject;
 namespace Image
 {
 ImagePresenter::ImagePresenter(
-        const Layer& layer,
+        const ProcessModel& layer,
         ImageView* view,
         const Process::ProcessPresenterContext& ctx,
         QObject* parent):
@@ -25,20 +24,20 @@ ImagePresenter::ImagePresenter(
 {
     putToFront();
 
-    con(layer.processModel().metadata(), &iscore::ModelMetadata::NameChanged,
+    con(layer.metadata(), &iscore::ModelMetadata::NameChanged,
             this, [&] (QString s)
     {
         putToFront();
     });
 
-    con(layer.processModel(), &ProcessModel::imageChanged,
+    con(layer, &ProcessModel::imageChanged,
         this, [&] ( ) {
-        m_view->setMode(m_layer.processModel().scaleMode());
-        m_view->setImage(m_layer.processModel().image());
+        m_view->setMode(m_layer.scaleMode());
+        m_view->setImage(m_layer.image());
     });
 
-    m_view->setImage(layer.processModel().image());
-    m_view->setMode(layer.processModel().scaleMode());
+    m_view->setImage(layer.image());
+    m_view->setMode(layer.scaleMode());
 }
 
 void ImagePresenter::setWidth(qreal val)
@@ -69,14 +68,14 @@ void ImagePresenter::parentGeometryChanged()
 {
 }
 
-const Process::LayerModel& ImagePresenter::layerModel() const
+const Process::ProcessModel& ImagePresenter::model() const
 {
     return m_layer;
 }
 
 const Id<Process::ProcessModel>& ImagePresenter::modelId() const
 {
-    return m_layer.processModel().id();
+    return m_layer.id();
 }
 
 }

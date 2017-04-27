@@ -14,10 +14,9 @@ using ProcessFactory =
         Image::ProcessModel>;
 using LayerFactory = Process::GenericLayerFactory<
     Image::ProcessModel,
-    Image::Layer,
     Image::ImagePresenter,
     Image::ImageView,
-    Process::GraphicsViewLayerModelPanelProxy>;
+    Process::GraphicsViewLayerPanelProxy>;
 }
 
 

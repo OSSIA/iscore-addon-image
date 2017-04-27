@@ -20,7 +20,7 @@ struct ImageFile
 class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessModel
 {
         ISCORE_SERIALIZE_FRIENDS
-        MODEL_METADATA_IMPL(Image::ProcessModel)
+        PROCESS_METADATA_IMPL(Image::ProcessModel)
 
         Q_OBJECT
 
