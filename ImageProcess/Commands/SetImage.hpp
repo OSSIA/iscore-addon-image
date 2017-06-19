@@ -17,11 +17,11 @@ class SetImage final : public iscore::Command
         ISCORE_COMMAND_DECL(Image::CommandFactoryName(), SetImage, "Set an image")
     public:
         SetImage(
-                Path<ProcessModel>&& model,
+                const ProcessModel& model,
                 const QString& path);
 
-        void undo() const override;
-        void redo() const override;
+        void undo(const iscore::DocumentContext& ctx) const override;
+        void redo(const iscore::DocumentContext& ctx) const override;
 
     protected:
         void serializeImpl(DataStreamInput & s) const override;
@@ -40,11 +40,11 @@ class SetImageScaleMode final : public iscore::Command
         ISCORE_COMMAND_DECL(Image::CommandFactoryName(), SetImageScaleMode, "Set image scale")
     public:
         SetImageScaleMode(
-                Path<ProcessModel>&& model,
+            const ProcessModel& model,
                 ScaleMode sm);
 
-        void undo() const override;
-        void redo() const override;
+        void undo(const iscore::DocumentContext& ctx) const override;
+        void redo(const iscore::DocumentContext& ctx) const override;
 
     protected:
         void serializeImpl(DataStreamInput & s) const override;

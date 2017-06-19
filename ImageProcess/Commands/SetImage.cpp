@@ -6,23 +6,22 @@
 namespace Image
 {
 SetImage::SetImage(
-    Path<ProcessModel>&& model,
-    const QString& text):
-  m_model{std::move(model)},
-  m_new{text}
+    const ProcessModel& model,
+    const QString& text)
+  : m_model{model}
+  , m_old{model.imagePath()}
+  , m_new{text}
 {
-    m_old = m_model.find().imagePath();
 }
 
-void SetImage::undo() const
+void SetImage::undo(const iscore::DocumentContext& ctx) const
 {
-    m_model.find().loadImage(m_old);
+    m_model.find(ctx).loadImage(m_old);
 }
 
-void SetImage::redo() const
+void SetImage::redo(const iscore::DocumentContext& ctx) const
 {
-    m_model.find().loadImage(m_new);
-
+    m_model.find(ctx).loadImage(m_new);
 }
 
 void SetImage::serializeImpl(DataStreamInput& s) const
@@ -39,22 +38,22 @@ void SetImage::deserializeImpl(DataStreamOutput& s)
 
 
 SetImageScaleMode::SetImageScaleMode(
-    Path<ProcessModel>&& model,
+    const ProcessModel& model,
     ScaleMode mode):
-  m_model{std::move(model)},
+  m_model{model},
+  m_old{model.scaleMode()},
   m_new{mode}
 {
-    m_old = m_model.find().scaleMode();
 }
 
-void SetImageScaleMode::undo() const
+void SetImageScaleMode::undo(const iscore::DocumentContext& ctx) const
 {
-    m_model.find().setScaleMode(m_old);
+    m_model.find(ctx).setScaleMode(m_old);
 }
 
-void SetImageScaleMode::redo() const
+void SetImageScaleMode::redo(const iscore::DocumentContext& ctx) const
 {
-    m_model.find().setScaleMode(m_new);
+    m_model.find(ctx).setScaleMode(m_new);
 
 }
 
