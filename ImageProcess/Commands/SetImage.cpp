@@ -1,8 +1,8 @@
 #include <ImageProcess/ImageModel.hpp>
 
 #include "SetImage.hpp"
-#include <iscore/serialization/DataStreamVisitor.hpp>
-#include <iscore/model/path/PathSerialization.hpp>
+#include <score/serialization/DataStreamVisitor.hpp>
+#include <score/model/path/PathSerialization.hpp>
 namespace Image
 {
 SetImage::SetImage(
@@ -14,12 +14,12 @@ SetImage::SetImage(
 {
 }
 
-void SetImage::undo(const iscore::DocumentContext& ctx) const
+void SetImage::undo(const score::DocumentContext& ctx) const
 {
     m_model.find(ctx).loadImage(m_old);
 }
 
-void SetImage::redo(const iscore::DocumentContext& ctx) const
+void SetImage::redo(const score::DocumentContext& ctx) const
 {
     m_model.find(ctx).loadImage(m_new);
 }
@@ -46,12 +46,12 @@ SetImageScaleMode::SetImageScaleMode(
 {
 }
 
-void SetImageScaleMode::undo(const iscore::DocumentContext& ctx) const
+void SetImageScaleMode::undo(const score::DocumentContext& ctx) const
 {
     m_model.find(ctx).setScaleMode(m_old);
 }
 
-void SetImageScaleMode::redo(const iscore::DocumentContext& ctx) const
+void SetImageScaleMode::redo(const score::DocumentContext& ctx) const
 {
     m_model.find(ctx).setScaleMode(m_new);
 

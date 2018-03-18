@@ -1,12 +1,24 @@
 cmake_minimum_required(VERSION 3.1)
-project(iscore_addon_image LANGUAGES CXX)
+project(score_addon_image LANGUAGES CXX)
 
 ###  General initialization of always necessary stuff (AUTOMOC, etc) ###
-iscore_common_setup()
+score_common_setup()
 
 ### Files & main target ###
-file(GLOB_RECURSE HDRS
-    "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/*.hpp"
+set(HDRS
+  "ImageProcess/Commands/ImageCommandFactory.hpp"
+  "ImageProcess/Commands/SetImage.hpp"
+  "ImageProcess/ImageLayerModel.hpp"
+  "ImageProcess/ImagePanelProxy.hpp"
+  "ImageProcess/ImageView.hpp"
+  "ImageProcess/Inspector/ImageInspectorWidget.hpp"
+  "ImageProcess/Inspector/ImageInspectorFactory.hpp"
+  "ImageProcess/ScaleMode.hpp"
+  "ImageProcess/ImagePresenter.hpp"
+  "ImageProcess/ImageProcessMetadata.hpp"
+  "ImageProcess/ImageModel.hpp"
+  "ImageProcess/ImageFactory.hpp"
+  "score_addon_image.hpp"
 )
 set(SRCS
 "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/ImageSerialization.cpp"
@@ -21,15 +33,16 @@ set(SRCS
 
 "${CMAKE_CURRENT_SOURCE_DIR}/ImageProcess/Inspector/ImageInspectorWidget.cpp"
 
-"${CMAKE_CURRENT_SOURCE_DIR}/iscore_addon_image.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/score_addon_image.cpp"
 )
 
 add_library(${PROJECT_NAME} ${SRCS} ${HDRS} ${QRCS})
+score_moc_headers(${PROJECT_NAME} "${HDRS}")
 
-### If there are commands this will generate the files showcased in iscore_plugin_image.cpp ###
-iscore_generate_command_list_file(${PROJECT_NAME} "${HDRS}")
+### If there are commands this will generate the files showcased in score_plugin_image.cpp ###
+score_generate_command_list_file(${PROJECT_NAME} "${HDRS}")
 
-target_link_libraries(${PROJECT_NAME} PUBLIC iscore_lib_process iscore_lib_inspector)
+target_link_libraries(${PROJECT_NAME} PUBLIC score_lib_process score_lib_inspector)
 
 ### Setup of the target ###
-setup_iscore_plugin(${PROJECT_NAME})
+setup_score_plugin(${PROJECT_NAME})

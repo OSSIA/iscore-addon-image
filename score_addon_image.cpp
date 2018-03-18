@@ -2,57 +2,54 @@
 #include <ImageProcess/ImageModel.hpp>
 #include <unordered_map>
 
+#include <ImageProcess/Inspector/ImageInspectorFactory.hpp>
 #include <ImageProcess/ImageProcessMetadata.hpp>
 #include <ImageProcess/Commands/ImageCommandFactory.hpp>
 #include <Inspector/InspectorWidgetFactoryInterface.hpp>
 #include <Process/ProcessFactory.hpp>
 #include <Process/Inspector/ProcessInspectorWidgetDelegate.hpp>
-#include <iscore/plugins/customfactory/StringFactoryKey.hpp>
-#include <iscore/plugins/customfactory/FactorySetup.hpp>
-#include "iscore_addon_image.hpp"
+#include <score/plugins/customfactory/StringFactoryKey.hpp>
+#include <score/plugins/customfactory/FactorySetup.hpp>
+#include "score_addon_image.hpp"
 
-#if defined(ISCORE_LIB_INSPECTOR)
-#include <ImageProcess/Inspector/ImageInspectorFactory.hpp>
-#endif
-
-#include <iscore_addon_image_commands_files.hpp>
+#include <score_addon_image_commands_files.hpp>
 #include <ImageProcess/ImageFactory.hpp>
 
-iscore_addon_image::iscore_addon_image() :
+score_addon_image::score_addon_image() :
     QObject {}
 {
 }
 
-iscore_addon_image::~iscore_addon_image()
+score_addon_image::~score_addon_image()
 {
 
 }
 
 
-std::vector<std::unique_ptr<iscore::InterfaceBase>> iscore_addon_image::factories(
-        const iscore::ApplicationContext& ctx,
-        const iscore::InterfaceKey& key) const
+std::vector<std::unique_ptr<score::InterfaceBase>> score_addon_image::factories(
+        const score::ApplicationContext& ctx,
+        const score::InterfaceKey& key) const
 {
     return instantiate_factories<
-            iscore::ApplicationContext,
+            score::ApplicationContext,
         FW<Process::ProcessModelFactory,
            Image::ProcessFactory>,
         FW<Process::LayerFactory,
           Image::LayerFactory>,
-        FW<Process::InspectorWidgetDelegateFactory,
+        FW<Inspector::InspectorWidgetFactory,
              Image::InspectorFactory>
     >(ctx, key);
 }
 
-std::pair<const CommandGroupKey, CommandGeneratorMap> iscore_addon_image::make_commands()
+std::pair<const CommandGroupKey, CommandGeneratorMap> score_addon_image::make_commands()
 {
     using namespace Image;
     std::pair<const CommandGroupKey, CommandGeneratorMap> cmds{CommandFactoryName(), CommandGeneratorMap{}};
 
     using Types = TypeList<
-#include <iscore_addon_image_commands.hpp>
+#include <score_addon_image_commands.hpp>
       >;
-    for_each_type<Types>(iscore::commands::FactoryInserter{cmds.second});
+    for_each_type<Types>(score::commands::FactoryInserter{cmds.second});
 
     return cmds;
 }

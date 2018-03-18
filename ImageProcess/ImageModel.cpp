@@ -1,13 +1,13 @@
-#include <iscore/tools/std/Optional.hpp>
-#include <iscore/document/DocumentInterface.hpp>
+#include <score/tools/std/Optional.hpp>
+#include <score/document/DocumentInterface.hpp>
 #include <QDebug>
 #include <QPoint>
 
 #include "ImageLayerModel.hpp"
 #include "ImageModel.hpp"
-#include <iscore/model/ModelMetadata.hpp>
-#include <iscore/model/IdentifiedObjectMap.hpp>
-#include <iscore/model/Identifier.hpp>
+#include <score/model/ModelMetadata.hpp>
+#include <score/model/IdentifiedObjectMap.hpp>
+#include <score/model/Identifier.hpp>
 
 namespace Process { class LayerModel; }
 namespace Process { class ProcessModel; }
@@ -24,22 +24,12 @@ ProcessModel::ProcessModel(
     loadImage("test.png");
 }
 
-ProcessModel::ProcessModel(
-        const ProcessModel& source,
-        const Id<Process::ProcessModel>& id,
-        QObject* parent):
-    Process::ProcessModel {source, id, Metadata<ObjectKey_k, ProcessModel>::get(), parent},
-    m_image(source.m_image)
-{
-    metadata().setInstanceName(*this);
-}
-
 void ProcessModel::loadImage(const QString& img)
 {
     m_image.path = img;
     m_image.image.load(img);
 
-    emit imageChanged();
+    imageChanged();
 }
 
 }

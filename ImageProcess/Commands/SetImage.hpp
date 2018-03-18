@@ -1,7 +1,7 @@
 #pragma once
 #include <ImageProcess/Commands/ImageCommandFactory.hpp>
-#include <iscore/command/Command.hpp>
-#include <iscore/model/path/Path.hpp>
+#include <score/command/Command.hpp>
+#include <score/model/path/Path.hpp>
 
 #include <ImageProcess/ScaleMode.hpp>
 
@@ -12,16 +12,16 @@ namespace Image
 {
 class ProcessModel;
 
-class SetImage final : public iscore::Command
+class SetImage final : public score::Command
 {
-        ISCORE_COMMAND_DECL(Image::CommandFactoryName(), SetImage, "Set an image")
+        SCORE_COMMAND_DECL(Image::CommandFactoryName(), SetImage, "Set an image")
     public:
         SetImage(
                 const ProcessModel& model,
                 const QString& path);
 
-        void undo(const iscore::DocumentContext& ctx) const override;
-        void redo(const iscore::DocumentContext& ctx) const override;
+        void undo(const score::DocumentContext& ctx) const override;
+        void redo(const score::DocumentContext& ctx) const override;
 
     protected:
         void serializeImpl(DataStreamInput & s) const override;
@@ -35,16 +35,16 @@ class SetImage final : public iscore::Command
 
 // MOVEME
 
-class SetImageScaleMode final : public iscore::Command
+class SetImageScaleMode final : public score::Command
 {
-        ISCORE_COMMAND_DECL(Image::CommandFactoryName(), SetImageScaleMode, "Set image scale")
+        SCORE_COMMAND_DECL(Image::CommandFactoryName(), SetImageScaleMode, "Set image scale")
     public:
         SetImageScaleMode(
             const ProcessModel& model,
                 ScaleMode sm);
 
-        void undo(const iscore::DocumentContext& ctx) const override;
-        void redo(const iscore::DocumentContext& ctx) const override;
+        void undo(const score::DocumentContext& ctx) const override;
+        void redo(const score::DocumentContext& ctx) const override;
 
     protected:
         void serializeImpl(DataStreamInput & s) const override;

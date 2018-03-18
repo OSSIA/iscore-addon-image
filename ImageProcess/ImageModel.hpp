@@ -6,7 +6,7 @@
 #include <QByteArray>
 #include <QImage>
 
-#include <iscore_addon_image_export.h>
+#include <score_addon_image_export.h>
 
 
 namespace Image
@@ -17,9 +17,9 @@ struct ImageFile
         QImage image;
 };
 
-class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessModel
+class SCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessModel
 {
-        ISCORE_SERIALIZE_FRIENDS
+        SCORE_SERIALIZE_FRIENDS
         PROCESS_METADATA_IMPL(Image::ProcessModel)
 
         Q_OBJECT
@@ -54,16 +54,11 @@ class ISCORE_ADDON_IMAGE_EXPORT ProcessModel final : public Process::ProcessMode
         void setScaleMode(ScaleMode m)
         {
             m_mode = m;
-            emit imageChanged();
+            imageChanged();
         }
 
-    signals:
+    Q_SIGNALS:
         void imageChanged();
-
-    protected:
-        ProcessModel(const ProcessModel& source,
-                        const Id<Process::ProcessModel>& id,
-                        QObject* parent);
 
     private:
         ImageFile m_image;

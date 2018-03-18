@@ -5,8 +5,8 @@
 #include "ImageView.hpp"
 #include <ImageProcess/ImageModel.hpp>
 #include <Process/LayerPresenter.hpp>
-#include <iscore/document/DocumentInterface.hpp>
-#include <iscore/document/DocumentContext.hpp>
+#include <score/document/DocumentInterface.hpp>
+#include <score/document/DocumentContext.hpp>
 class QMenu;
 class QObject;
 
@@ -24,7 +24,7 @@ ImagePresenter::ImagePresenter(
 {
     putToFront();
 
-    con(layer.metadata(), &iscore::ModelMetadata::NameChanged,
+    con(layer.metadata(), &score::ModelMetadata::NameChanged,
             this, [&] (QString s)
     {
         putToFront();
